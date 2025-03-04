@@ -1,0 +1,76 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.viaje;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Usuario
+ */
+public class Viaje {
+
+    public static void main(String[] args) {
+        
+       Scanner datos = new Scanner(System.in);
+       double km = 0;
+       double precio = 0;
+       double gasto = 0;
+       
+        System.out.println("Introduce los km totales");
+         try {
+             km = datos.nextDouble();
+        } catch (Exception e) {
+            System.out.println("Error");
+        } 
+        
+        System.out.println("Introduce el precio del litro de la gasolina");
+         try {
+             precio = datos.nextDouble();
+        } catch (Exception e) {
+            System.out.println("Error");
+        } 
+        
+        System.out.println("Introduce el dinero gastado");
+         try {
+             gasto = datos.nextDouble();
+        } catch (Exception e) {
+            System.out.println("Error");
+        } 
+        System.out.println("Introduce el tiempo de viaje en formato HH:mm");
+        
+        String tiempo = datos.next();
+        String[] tiempoTotalArray = tiempo.split(":");
+        int horas = Integer.parseInt(tiempoTotalArray[0]);
+        int minutos = Integer.parseInt(tiempoTotalArray[1]);
+        
+        
+        double consumoCien;
+        consumoCien = 100 * gasto / km;
+        double litrosCien;
+        litrosCien = consumoCien / precio;
+        
+        double consumoUno;
+        consumoUno = 1 * gasto / km;
+        double litrosUno;
+        litrosUno = consumoUno / precio;
+        
+        double velocidadKmHora;
+        int minutostotales = horas*60+minutos;
+        double tiempo1 = minutostotales / 60;
+        velocidadKmHora = km / tiempo1;
+        
+        double velocidadMSeg;
+        int segundostotales = minutostotales*60;
+        double metros = km*100;
+        velocidadMSeg = metros/segundostotales;
+        
+        
+        System.out.printf("El consumo cada 100 km es de %.2f\n euros,y %.2f\n litros",consumoCien,litrosCien);
+        System.out.printf("El consumo cada 1 km es de %.2f\n euros,y %.2f\n litros",consumoUno,litrosUno);
+        System.out.printf("La velocidad media en km/h es %.2f\n",velocidadKmHora);
+        System.out.printf("La velocidad media en m/s es %.2f\n",velocidadMSeg);
+    }
+}
